@@ -2,14 +2,25 @@
 
 namespace CardActions.Api.Services
 {
+    /// <summary>
+    /// Service for cards.
+    /// </summary>
     public class CardService : ICardService
     {
         private readonly Dictionary<string, Dictionary<string, CardDetails>> _userCards = CreateSampleUserCards();
-        public async Task<CardDetails?> GetCardDetails(string userId, string cardNumber)
+
+        /// <summary>
+        /// Implementation of method to get card details.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="cardNumber"></param>
+        /// <param name="ct">CancellationToken if </param>
+        /// <returns></returns>
+        public async Task<CardDetails?> GetCardDetailsAsync(string userId, string cardNumber, CancellationToken ct)
         {
             // At this point, we would typically make an HTTP call to an external service
             // to fetch the data. For this example we use generated sample data.
-            await Task.Delay(1000);
+            await Task.Delay(1000, ct);
             if (!_userCards.TryGetValue(userId, out var cards)
             || !cards.TryGetValue(cardNumber, out var cardDetails))
             {

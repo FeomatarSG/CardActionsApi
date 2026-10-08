@@ -4,6 +4,10 @@ using static CardActions.Api.Domain.CardType;
 
 namespace CardActions.Api.Domain
 {
+    /// <summary>
+    /// Business table of allowed actions, written as one specification per action.
+    /// Changing a business rule means changing a single row; the evaluation logic stays untouched.
+    /// </summary>
     public static class CardActionSpecifications
     {
         private static readonly ISpecification<CardDetails> AnyType = TypeIn(Prepaid, Debit, Credit);
@@ -13,6 +17,9 @@ namespace CardActions.Api.Domain
         private static readonly ISpecification<CardDetails> PinSet = new PinSetSpecification();
         private static readonly ISpecification<CardDetails> PinNotSet = PinSet.Not();
 
+        /// <summary>
+        /// Specification of every action. An action missing from this dictionary is never allowed.
+        /// </summary>
         public static IReadOnlyDictionary<CardAction, ISpecification<CardDetails>> All { get; } =
             new Dictionary<CardAction, ISpecification<CardDetails>>
             {

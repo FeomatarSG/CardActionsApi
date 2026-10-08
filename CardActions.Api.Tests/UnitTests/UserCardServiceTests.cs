@@ -1,4 +1,5 @@
 using CardActions.Api.Domain;
+using CardActions.Api.Services;
 
 namespace CardActions.Api.Tests.UnitTests
 {

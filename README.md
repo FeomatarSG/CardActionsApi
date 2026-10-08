@@ -15,7 +15,11 @@ Swagger: http://localhost:5165/swagger. Przykładowe zapytania: `CardActions.Api
 
 ## API
 
-`GET /Card?userId=User1&cardNumber=Card17` → `["ACTION3","ACTION4","ACTION9"]`
+`GET /api/users/User1/cards/Card17/allowed-actions`
+
+```json
+{ "cardNumber": "Card17", "allowedActions": ["ACTION3", "ACTION4", "ACTION9"] }
+```
 
 - **400** – brak parametru, znaki inne niż litery i cyfry ASCII albo więcej niż 32 znaki
 - **404** – karta nie istnieje dla tego użytkownika; ta sama odpowiedź, gdy nie istnieje użytkownik
