@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CardActions.Api.Tests/CardActions.Api.Tests.csproj" />
+  <Project Path="CardActions.Api/CardActions.Api.csproj" />
+</Solution>

@@ -1,0 +1,25 @@
+@HostAddress = http://localhost:5165
+
+### 200 - PREPAID / CLOSED -> ACTION3, ACTION4, ACTION9
+GET {{HostAddress}}/Card?userId=User1&cardNumber=Card17
+
+### 200 - DEBIT / BLOCKED z PIN-em -> ACTION3, ACTION4, ACTION6, ACTION7, ACTION8, ACTION9
+GET {{HostAddress}}/Card?userId=User1&cardNumber=Card112
+
+### 200 - CREDIT / ACTIVE bez PIN-u -> zawiera ACTION5 (tylko karty kredytowe)
+GET {{HostAddress}}/Card?userId=User1&cardNumber=Card117
+
+### 400 - brak obu parametrów
+GET {{HostAddress}}/Card
+
+### 400 - lista wartości zamiast identyfikatora
+GET {{HostAddress}}/Card?userId=1,2,4&cardNumber=Card17
+
+### 400 - wartość ujemna w numerze karty
+GET {{HostAddress}}/Card?userId=User1&cardNumber=-1
+
+### 404 - nieznana karta
+GET {{HostAddress}}/Card?userId=User1&cardNumber=Card999
+
+### 404 - karta innego użytkownika (Card21 należy do User2)
+GET {{HostAddress}}/Card?userId=User1&cardNumber=Card21
